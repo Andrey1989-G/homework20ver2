@@ -21,3 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('for_hw192.urls'))
 ]
+
