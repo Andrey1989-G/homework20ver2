@@ -11,7 +11,7 @@ class Product(models.Model):
     change_date = models.DateTimeField(**NULLABLE, auto_now=True, verbose_name='дата последнего изменения') # дата последнего изменения.
 
     def __str__(self):
-        return 'class Product работает'
+        return f'{self.product_name}'
 
 
 class Category(models.Model):
@@ -20,4 +20,4 @@ class Category(models.Model):
     # created_at = models.TextField(**NULLABLE, verbose_name='для удаления')
 
     def __str__(self):
-        return 'class Category работает'
+        return f'{self.name}'
