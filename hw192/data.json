@@ -1,0 +1,57 @@
+[
+  {
+    "model": "for_hw192.product",
+    "fields": {
+      "product_name": "продукт8",
+      "descriptions": "для проверки продукта 8",
+      "image": "",
+      "category": "окна",
+      "price": null,
+      "create_date": "2023-11-18T15:36:34.451Z",
+      "change_date": "2023-11-18T15:36:34.451Z"
+    }
+  },
+  {
+    "model": "for_hw192.product",
+    "fields": {
+      "product_name": "продукт7",
+      "descriptions": "тест для продукта 7",
+      "image": "",
+      "category": "двери",
+      "price": null,
+      "create_date": "2023-11-18T15:43:39.317Z",
+      "change_date": "2023-11-18T15:43:39.317Z"
+    }
+  },
+  {
+    "model": "for_hw192.product",
+    "fields": {
+      "product_name": "продукт6",
+      "descriptions": null,
+      "image": "",
+      "category": "окна",
+      "price": null,
+      "create_date": "2023-11-18T19:05:59.391Z",
+      "change_date": "2023-11-18T19:05:59.391Z"
+    }
+  },
+  {
+    "model": "for_hw192.product",
+    "fields": {
+      "product_name": "продукт5",
+      "descriptions": null,
+      "image": "",
+      "category": "двери",
+      "price": null,
+      "create_date": "2023-11-18T19:07:27.550Z",
+      "change_date": "2023-11-18T19:07:27.550Z"
+    }
+  },
+  {
+    "model": "for_hw192.category",
+    "fields": {
+      "name": "Категория2",
+      "descriptions": "Категория для примера 2"
+    }
+  }
+]
