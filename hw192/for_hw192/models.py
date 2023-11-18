@@ -13,6 +13,7 @@ class Product(models.Model):
     def __str__(self):
         return 'class Product работает'
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='наименование') # наименование,
     descriptions = models.TextField(**NULLABLE, verbose_name='описание') # описание.
