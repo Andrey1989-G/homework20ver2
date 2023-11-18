@@ -17,7 +17,7 @@ class Product(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='наименование') # наименование,
     descriptions = models.TextField(**NULLABLE, verbose_name='описание') # описание.
-    created_at = models.TextField(**NULLABLE, verbose_name='для удаления')
+    # created_at = models.TextField(**NULLABLE, verbose_name='для удаления')
 
     def __str__(self):
         return 'class Category работает'
