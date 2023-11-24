@@ -11,7 +11,7 @@ class Product(models.Model):
     change_date = models.DateTimeField(**NULLABLE, auto_now=True, verbose_name='дата последнего изменения') # дата последнего изменения.
 
     def __str__(self):
-        return f'{self.product_name}'
+        return f'{self.product_name} {self.category}'
 
 
 class Category(models.Model):
