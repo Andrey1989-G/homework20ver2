@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 NULLABLE = {'blank':True, 'null':True}
 # Create your models here.
 class Product(models.Model):
@@ -12,6 +14,9 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.product_name} {self.category}'
+
+    def get_absolute_url(self):
+        return reverse('one_product', kwargs={'prod_id': self.pk})
 
 
 class Category(models.Model):
