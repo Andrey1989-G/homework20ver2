@@ -13,9 +13,9 @@
             {% for object in object_list %}
             <div class="col-12 col-md-4 p-5 mt-3">
                 {% if object.category == 'окна' %}
-                    <a href="{{ object.get_absolute_url }}"><img src="{% static 'img/category_img_01.jpg' %}" class="rounded-circle img-fluid border"></a>
+                    <a href="{{ object.get_absolute_url }}"><img src="{% mediapath img.category_img_01 %}" class="rounded-circle img-fluid border"></a>
                 {% else %}
-                    <a href="{{ object.get_absolute_url }}"><img src="{% static 'img/category_img_02.jpg' %}" class="rounded-circle img-fluid border"></a>
+                    <a href="{{ object.get_absolute_url }}"><img src="{% mediapath img.category_img_02 %}" class="rounded-circle img-fluid border"></a>
                 {% endif %}
                 <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
                 <p class="text-center"><a href="{{ object.get_absolute_url }}" class="btn btn-success"> Купить {{ object.product_name }}</a></p>
