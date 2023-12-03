@@ -26,3 +26,16 @@ class Category(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+class Blog(models.Model):
+    title = models.CharField(max_length=100, verbose_name='заголовок')# заголовок,
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    content = models.TextField(**NULLABLE, verbose_name='содержимое') # содержимое, можно не заполнять
+    img_preview = models.ImageField(upload_to='users_load', **NULLABLE, verbose_name='изображение') # изображение (превью)
+    date_creation = models.DateTimeField(auto_now_add=True, verbose_name='количество просмотров') # дата создания,
+    sign_publication = models.BooleanField(default=True) #признак публикации
+    number_views = models.IntegerField(**NULLABLE, verbose_name='просмотры') # просмотры
+
+
+    def __str__(self):
+        return f'{self.title}'

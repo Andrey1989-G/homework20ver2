@@ -1,0 +1,23 @@
+{% extends 'for_hw192/base.html' %}
+{% load static %}
+    {% block content %}
+
+    <!-- Start Contact -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <form class="col-md-9 m-auto" method="post" role="form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if object %}
+                    <div class="col text-end mt-2">
+                        <button type="submit"  class="btn btn-success"><a href="{% url 'for_hw192:view' object.slug %}">Сохранить</button>
+                    </div>
+                {% else %}
+                    <button type="submit"  class="btn btn-success">Опубликовать</button>
+                {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Contact -->
+    {% endblock %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from for_hw192.models import Product, Category
+from for_hw192.models import Product, Category, Blog
 
 # Register your models here.
 
@@ -16,3 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name',)
+
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'content', 'img_preview', 'sign_publication', 'number_views',)

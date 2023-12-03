@@ -1,0 +1,32 @@
+{% extends 'for_hw192/base.html' %}
+{% load static %}
+    {% block content %}
+    <!-- Start Categories of The Month -->
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Статьи блога</h1>
+            <br>
+            </div>
+        </div>
+        <div class="row">
+            {% for object in object_list %}
+            <div class="col-12 col-md-2 p-10 mt-3">
+                {% if sign_publication == True %}
+                    <a href="{% url 'for_hw192:view' object.slug %}"><img src="{% static 'img/category_img_01.jpg' %}" class="rounded-circle img-fluid border"></a>
+                {% else %}
+                    <a href="{% url 'for_hw192:view' object.slug %}"><img src="{% static 'img/category_img_02.jpg' %}" class="rounded-circle img-fluid border"></a>
+                {% endif %}
+                <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
+                <p class="text-center"><a href="{% url 'for_hw192:view' object.slug %}" class="btn btn-success"> Посмотреть {{ object.title }}</a></p>
+                <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
+                <p class="text-center"><a href="{% url 'for_hw192:edit' object.slug %}" class="btn btn-success"> Редактировать {{ object.title }}</a></p>
+                <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
+                <p class="text-center"><a href="{% url 'for_hw192:delete' object.pk %}" class="btn btn-warning"> Удалить {{ object.title }}</a></p>
+
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- End Categories of The Month -->
+    {% endblock %}
