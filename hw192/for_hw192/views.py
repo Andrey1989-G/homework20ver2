@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.text import slugify
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from for_hw192.models import Blog
@@ -8,8 +9,15 @@ from for_hw192.models import Blog
 
 class BlogCreateView(CreateView):
     model = Blog
-    fields = ('title', 'slug', 'content', 'img_preview', 'sign_publication', 'number_views',)
+    fields = ('title', 'content', 'img_preview', 'sign_publication',) #здесь устанавливаются поля для автоматической формы
     success_url = reverse_lazy('for_hw192:list')
+
+    def form_valid(self, form):
+        if form.is_valid():
+            new_blog = form.save()
+            new_blog.slug = slugify(new_blog.title)
+            new_blog.save()
+        return super().form_valid(form)
 
 class BlogListView(ListView):
     model = Blog
@@ -24,6 +32,7 @@ class BlogDetailView(DetailView):
     success_url = reverse_lazy('for_hw192:list')
 
     def get_object(self, queryset=None):
+        """ добавили счетик просмотров """
         self.object = super().get_object(queryset)
         if self.object.number_views is None:
             self.object.number_views == 1
