@@ -34,10 +34,7 @@ class BlogDetailView(DetailView):
     def get_object(self, queryset=None):
         """ добавили счетик просмотров """
         self.object = super().get_object(queryset)
-        if self.object.number_views is None:
-            self.object.number_views == 1
-        else:
-            self.object.number_views += 1
+        self.object.number_views += 1
         self.object.save()
         return self.object
 

@@ -34,7 +34,7 @@ class Blog(models.Model):
     img_preview = models.ImageField(upload_to='users_load', **NULLABLE, verbose_name='изображение') # изображение (превью)
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='количество просмотров') # дата создания,
     sign_publication = models.BooleanField(default=True) #признак публикации
-    number_views = models.IntegerField(**NULLABLE, verbose_name='просмотры') # просмотры
+    number_views = models.IntegerField(**NULLABLE, default=0, verbose_name='просмотры') # просмотры
 
 
     def __str__(self):
