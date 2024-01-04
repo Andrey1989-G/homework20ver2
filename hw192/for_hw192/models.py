@@ -5,6 +5,7 @@ NULLABLE = {'blank':True, 'null':True}
 # Create your models here.
 class Product(models.Model):
     product_name = models.CharField(max_length=100, verbose_name='наименование')# наименование,
+    slug = models.SlugField(max_length=255, default="url", unique=True, db_index=True, verbose_name="URL")
     descriptions = models.TextField(**NULLABLE, verbose_name='описание') # описание, можно не заполнять
     image = models.ImageField(upload_to='users_load', **NULLABLE, verbose_name='изображение') # изображение (превью),
     category = models.CharField(**NULLABLE, max_length=100, verbose_name='категория') # категория,
@@ -39,3 +40,16 @@ class Blog(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+class Version(models.Model):
+    title_version = models.CharField(max_length=100, verbose_name='название версии') # название версии,
+    number_version = models.CharField(max_length=100, verbose_name='номер версии') # номер версии,
+    newest_version = models.BooleanField(default=True, verbose_name='признак новейшей версии') #признак новейшей версии
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='продукт')
+
+    def __str__(self):
+        return f'{self.title_version}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'

@@ -1,0 +1,20 @@
+{% extends 'for_hw192/base.html'%}
+
+{% block content %}
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <h1>Вы действительно хотите удалить товар "{{ object.product_name }}"?</h1>
+                        <button type="submit" class="btn btn-danger">Подтвердить</button>
+                        <a href="{% url 'for_hw192:list_product' %}" class="btn btn-warning">Отмена</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

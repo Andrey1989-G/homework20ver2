@@ -1,0 +1,43 @@
+{% extends 'for_hw192/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+            <div class="container">
+                <div class="col-12">
+                    <div class="card-body">
+                        <div class="row">
+                                <form method="post">
+                                    <div class="col-12 mb-5">
+                                        {% if object %}
+                                            <h1> Изменить товар </h1>
+                                        {% else %}
+                                            <h1> Добавить товар </h1>
+                                        {% endif %}
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <button type="submit"  class="btn btn-success">
+                                            {% if object %}
+                                                Сохранить
+                                            {% else %}
+                                                Создать
+                                            {% endif %}
+                                        </button>
+                                    </div>
+                                    {% if object %}
+                                    <div class="col-12 mb-5">
+                                         <h1> Версия товара</h1>
+                                         {% csrf_token %}
+                                         {{ formset.management_form }}
+                                         {% for form in formset.forms %}
+                                             {{ form.as_p}}
+                                         {% endfor %}
+                                    {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
