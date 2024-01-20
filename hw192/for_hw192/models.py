@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.conf import settings
 
 NULLABLE = {'blank':True, 'null':True}
 # Create your models here.
@@ -12,6 +13,24 @@ class Product(models.Model):
     price = models.IntegerField(**NULLABLE, verbose_name='цена за покупку') # цена за покупку,
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='дата создания') # дата создания,
     change_date = models.DateTimeField(**NULLABLE, auto_now=True, verbose_name='дата последнего изменения') # дата последнего изменения.
+
+    is_published = models.BooleanField(default=True, verbose_name='опубликовано')
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='владелец')
+
+    def __str__(self):
+        return f'{self.product_name} {self.category}'
+
+    class Meta:
+        verbose_name = 'продукт'
+        verbose_name_plural = 'продукты'
+
+        permissions = [
+            (
+                'set_published',
+                'публикация продукта'
+            )
+        ]
 
     def __str__(self):
         return f'{self.product_name} {self.category}'

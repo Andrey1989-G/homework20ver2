@@ -31,3 +31,12 @@ class VersionForm(forms.ModelForm):
         model = Version
         fields = '__all__'
 
+class ProductFormUser(ProductForm):
+    class Meta:
+        model = Product
+        fields = ('product_name', 'descriptions', 'image', 'category', 'price')
+
+class ProductFormModerator(ProductForm):
+    class Meta:
+        model = Product
+        fields = ('descriptions', 'category', 'is_published')

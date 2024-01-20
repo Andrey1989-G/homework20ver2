@@ -11,14 +11,27 @@
         </div>
         <div class="row">
             {% for object in object_list %}
-            <div class="col-12 col-md-2 p-10 mt-3">
-                <a href="{% url 'for_hw192:view_product' object.slug %}"><img src="{% static 'img/category_img_01.jpg' %}" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
-                <p class="text-center"><a href="{% url 'for_hw192:view_product' object.slug %}" class="btn btn-success"> Посмотреть {{ object.title }}</a></p>
-                <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
-                <p class="text-center"><a href="{% url 'for_hw192:edit_product' object.slug %}" class="btn btn-success"> Редактировать {{ object.title }}</a></p>
-                <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
-                <p class="text-center"><a href="{% url 'for_hw192:delete_product' object.pk %}" class="btn btn-warning"> Удалить {{ object.title }}</a></p>
+                {% if user.is_active %}
+
+                        <div class="col-12 col-md-2 p-10 mt-3">
+                            <a href="{% url 'for_hw192:view_product' object.slug %}"><img src="{% static 'img/category_img_01.jpg' %}" class="rounded-circle img-fluid border"></a>
+                            <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
+                            <p class="text-center"><a href="{% url 'for_hw192:view_product' object.slug %}" class="btn btn-success"> Посмотреть {{ object.title }}</a></p>
+                            <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
+                            <p class="text-center"><a href="{% url 'for_hw192:edit_product' object.slug %}" class="btn btn-success"> Редактировать {{ object.title }}</a></p>
+                                {% if user.is_superuser %}
+                                    <h5 class="text-center mt-3 mb-3">{{ object.category | truncatechars:100 }}</h5>
+                                    <p class="text-center"><a href="{% url 'for_hw192:delete_product' object.pk %}" class="btn btn-warning"> Удалить {{ object.title }}</a></p>
+                                {% endif %}
+                        </div>
+
+                {% endif %}
+            <div class="card-footer">
+                {% if object.version == None %}
+                    Активная версия продукта: Отсутствует
+                {% else %}
+                    Активная версия продукта: {{ object.version }}
+                {% endif %}
             </div>
             {% endfor %}
         </div>

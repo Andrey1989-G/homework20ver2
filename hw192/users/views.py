@@ -1,6 +1,8 @@
 from secrets import token_hex
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordResetView
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
@@ -14,24 +16,23 @@ from users.models import User
 
 from hw192.settings import EMAIL_HOST_USER
 
-
 class RegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
     template_name = 'users/user_form.html'
 
-    def form_valid(self, form):
-        send_mail('Email verify',
-                  f'Write this token {form.instance.verify_token}',
-                  'sir.saltickow@yandex.ru',
-                  [form.instance.email, ])
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     send_mail('Email verify',
+    #               f'Write this token {form.instance.verify_token}',
+    #               'proverka@yandex.ru',
+    #               [form.instance.email, ])
+    #     return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('users:verify')
+        return reverse_lazy('users:verify_success')
 
 
-class VerifyView(View):
+class VerifyView(LoginRequiredMixin, View):
     template_name = 'users/verify.html'
 
     def get(self, request):
@@ -50,7 +51,7 @@ class VerifyView(View):
             pass
 
 
-class VerifyError(View):
+class VerifyError(LoginRequiredMixin, View):
     template_name = 'users/verify_error.html'
 
     def get(self, request):
@@ -64,7 +65,7 @@ class VerifySuccess(View):
         return render(request, self.template_name)
 
 
-class ChangePassword(View):
+class ChangePassword(LoginRequiredMixin, View):
 
     template_name = 'users/change_password.html'
 

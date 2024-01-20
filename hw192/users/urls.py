@@ -9,7 +9,7 @@ from users.views import RegisterView, VerifyView, VerifySuccess, VerifyError, Ch
 app_name = UsersConfig.name
 
 urlpatterns = [
-    path('', RegisterView.as_view(), name='register'),
+    path('create-user/', RegisterView.as_view(), name='register'),
     path('verify/', VerifyView.as_view(), name='verify'),
     path('verify_success/', VerifySuccess.as_view(), name='verify_success'),
     path('verify_error/', VerifyError.as_view(), name='verify_error'),

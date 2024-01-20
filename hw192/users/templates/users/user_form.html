@@ -7,10 +7,11 @@
                 <div class="card">
                     <div class="card-body">
                         <form method="post">
+                            <h2> Регистрация </h2>
                              {% csrf_token %}
                              {{ form.as_p }}
-                             <button type="submit" style="btn btn-primary">
-                                    Создать
+                             <button type="submit" style="btn btn-primary" >
+                                 Отправить
                              </button>
                         </form>
                     </div>
@@ -18,4 +19,6 @@
             </div>
         </div>
     </div>
+
+
 {% endblock %}
