@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <h1 class="card-title pricing-card-title">${{ product.buy_cost }}</h1>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <ul class="col-12 col-md-2 p-10 mt-3">
                         <img src="{% static 'img/category_img_01.jpg' %}" class="rounded-circle img-fluid border">
                         <li>- {{ product.description|slice:100 }}</li>
                         <li>- {{ product.category }}</li>

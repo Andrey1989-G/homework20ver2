@@ -13,6 +13,7 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, verbose_name='почта')
 
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
